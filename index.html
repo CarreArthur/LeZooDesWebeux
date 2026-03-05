@@ -1,153 +1,276 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Ferme des Webeux 🚜</title>
+    <title>Le zoo des Webeux</title>
+
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.28/build/spline-viewer.js"></script>
-    
+
     <style>
         :root {
-            --bg-color: #f0fdf4; /* Vert herbe très clair */
-            --card-bg: #ffffff;
-            --accent-color: #22c55e;
+            --bg: #0b0f14;
+            --card: #121821;
+            --card-light: #161d27;
+
+            --text: #e8edf3;
+            --text-muted: #8a93a3;
+
+            --border: rgba(255, 255, 255, 0.06);
+
+            --accent: #22c55e;
+
+            --radius: 18px;
+
+            --shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+
             margin: 0;
-            padding: 40px;
-            color: #1a2e05;
+            padding: 50px 30px 80px;
+
+            font-family:
+                system-ui,
+                -apple-system,
+                Segoe UI,
+                Roboto,
+                Helvetica,
+                Arial;
+
+            background: radial-gradient(circle at top, #111722, #070b10);
+
+            color: var(--text);
+
+            min-height: 100vh;
         }
+
+        /* HEADER */
 
         header {
+
             text-align: center;
-            margin-bottom: 50px;
+
+            margin-bottom: 60px;
+
         }
 
-        h1 { font-size: 3rem; margin-bottom: 10px; }
-        p { font-style: italic; color: #666; }
+        h1 {
 
-        /* La Grille 3x4 (4 colonnes sur PC) */
+            font-size: 3rem;
+
+            margin-bottom: 8px;
+
+            letter-spacing: -1px;
+
+        }
+
+        p {
+
+            color: var(--text-muted);
+
+            font-style: normal;
+
+        }
+
+        /* GRID */
+
         .farm-grid {
+
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-            grid-template-rows: repeat(3, 1fr);    /* 3 lignes */
-            gap: 25px;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 28px;
+
             max-width: 1200px;
+
             margin: 0 auto;
+
         }
 
-        /* Style de chaque carte animal */
+        /* CARD */
+
         .animal-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+            background: var(--card);
+
+            border-radius: var(--radius);
+
+            border: 1px solid var(--border);
+
             height: 350px;
+
             display: flex;
+
             flex-direction: column;
-            border: 2px solid transparent;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+
             overflow: hidden;
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border .25s ease;
+
         }
 
         .animal-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
+
+            transform: translateY(-8px);
+
+            border-color: rgba(34, 197, 94, 0.5);
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.7);
+
         }
 
-        /* Le viewer Spline prend 80% de la carte */
+        /* SPLINE */
+
         spline-viewer {
+
             width: 100%;
+
             height: 80%;
+
+            background: #0e141c;
+
         }
 
-        /* Le nom de l'étudiant en bas */
+        /* STUDENT */
+
         .student-info {
+
             height: 20%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            background: #fafafa;
-            border-top: 1px solid #eee;
+
+            background: var(--card-light);
+
+            border-top: 1px solid var(--border);
+
         }
 
         .student-name {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #333;
+
+            font-weight: 600;
+
+            font-size: 1.05rem;
+
+            letter-spacing: .3px;
+
         }
 
-        /* Responsive : passe à 2 colonnes sur tablette/mobile */
-        @media (max-width: 900px) {
-            .farm-grid { grid-template-columns: repeat(2, 1fr); }
+        /* RESPONSIVE */
+
+        @media (max-width:900px) {
+
+            .farm-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+        }
+
+        @media (max-width:500px) {
+
+            .farm-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
         }
     </style>
 </head>
+
 <body>
 
     <header>
-        <h1>🚜 La Ferme des Webeux</h1>
-        <p>12 créatures interactives nées en 25 minutes chrono.</p>
+        <h1>Le zoo des Webeux</h1>
+        <p>12 créatures nées dans l'obscurité</p>
     </header>
 
     <div class="farm-grid">
+
         <!-- Clea -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Clea</span></div>
         </div>
+
         <!-- Mike -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Mike</span></div>
         </div>
+
         <!-- Lou -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Lou</span></div>
         </div>
+
         <!-- Louise -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Louise</span></div>
         </div>
+
         <!-- Bastien -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Bastien</span></div>
         </div>
+
         <!-- Loup -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Loup</span></div>
         </div>
+
         <!-- Valentin -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Valentin</span></div>
         </div>
+
         <!-- Celestine-->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Celestine</span></div>
         </div>
+
         <!-- Camille -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Camille</span></div>
         </div>
+
         <!-- Fanie -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Fanie</span></div>
         </div>
+
         <!-- Remi-->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
             <div class="student-info"><span class="student-name">Remi</span></div>
         </div>
+
         <!-- Gillou -->
         <div class="animal-card">
             <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
@@ -157,4 +280,5 @@
     </div>
 
 </body>
+
 </html>
