@@ -1,284 +1,265 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Le zoo des Webeux</title>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.28/build/spline-viewer.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@splinetool/viewer@1.0.28/build/spline-viewer.js"
+    ></script>
 
     <style>
-        :root {
-            --bg: #0b0f14;
-            --card: #121821;
-            --card-light: #161d27;
+      :root {
+        --bg: #0b0f14;
+        --card: #121821;
+        --card-light: #161d27;
 
-            --text: #e8edf3;
-            --text-muted: #8a93a3;
+        --text: #e8edf3;
+        --text-muted: #8a93a3;
 
-            --border: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.06);
 
-            --accent: #22c55e;
+        --accent: #22c55e;
 
-            --radius: 18px;
+        --radius: 18px;
 
-            --shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
-        }
+        --shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+      }
 
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
+      body {
+        margin: 0;
+        padding: 50px 30px 80px;
 
-            margin: 0;
-            padding: 50px 30px 80px;
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial;
 
-            font-family:
-                system-ui,
-                -apple-system,
-                Segoe UI,
-                Roboto,
-                Helvetica,
-                Arial;
+        background: radial-gradient(circle at top, #111722, #070b10);
 
-            background: radial-gradient(circle at top, #111722, #070b10);
+        color: var(--text);
 
-            color: var(--text);
+        min-height: 100vh;
+      }
 
-            min-height: 100vh;
-        }
+      /* HEADER */
 
-        /* HEADER */
+      header {
+        text-align: center;
 
-        header {
+        margin-bottom: 60px;
+      }
 
-            text-align: center;
+      h1 {
+        font-size: 3rem;
 
-            margin-bottom: 60px;
+        margin-bottom: 8px;
 
-        }
+        letter-spacing: -1px;
+      }
 
-        h1 {
+      p {
+        color: var(--text-muted);
 
-            font-size: 3rem;
+        font-style: normal;
+      }
 
-            margin-bottom: 8px;
+      /* GRID */
 
-            letter-spacing: -1px;
+      .farm-grid {
+        display: grid;
 
-        }
+        grid-template-columns: repeat(4, 1fr);
 
-        p {
+        gap: 28px;
 
-            color: var(--text-muted);
+        max-width: 1200px;
 
-            font-style: normal;
+        margin: 0 auto;
+      }
 
-        }
+      /* CARD */
 
-        /* GRID */
+      .animal-card {
+        background: var(--card);
 
+        border-radius: var(--radius);
+
+        border: 1px solid var(--border);
+
+        height: 350px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        overflow: hidden;
+
+        box-shadow: var(--shadow);
+
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border 0.25s ease;
+      }
+
+      .animal-card:hover {
+        transform: translateY(-8px);
+
+        border-color: rgba(34, 197, 94, 0.5);
+
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+      }
+
+      /* SPLINE */
+
+      spline-viewer {
+        width: 100%;
+
+        height: 80%;
+
+        background: #0e141c;
+      }
+
+      /* STUDENT */
+
+      .student-info {
+        height: 20%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: var(--card-light);
+
+        border-top: 1px solid var(--border);
+      }
+
+      .student-name {
+        font-weight: 600;
+
+        font-size: 1.05rem;
+
+        letter-spacing: 0.3px;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 900px) {
         .farm-grid {
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 28px;
-
-            max-width: 1200px;
-
-            margin: 0 auto;
-
+          grid-template-columns: repeat(2, 1fr);
         }
+      }
 
-        /* CARD */
-
-        .animal-card {
-
-            background: var(--card);
-
-            border-radius: var(--radius);
-
-            border: 1px solid var(--border);
-
-            height: 350px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            overflow: hidden;
-
-            box-shadow: var(--shadow);
-
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease,
-                border .25s ease;
-
+      @media (max-width: 500px) {
+        .farm-grid {
+          grid-template-columns: 1fr;
         }
-
-        .animal-card:hover {
-
-            transform: translateY(-8px);
-
-            border-color: rgba(34, 197, 94, 0.5);
-
-            box-shadow:
-                0 15px 45px rgba(0, 0, 0, 0.7);
-
-        }
-
-        /* SPLINE */
-
-        spline-viewer {
-
-            width: 100%;
-
-            height: 80%;
-
-            background: #0e141c;
-
-        }
-
-        /* STUDENT */
-
-        .student-info {
-
-            height: 20%;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: var(--card-light);
-
-            border-top: 1px solid var(--border);
-
-        }
-
-        .student-name {
-
-            font-weight: 600;
-
-            font-size: 1.05rem;
-
-            letter-spacing: .3px;
-
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width:900px) {
-
-            .farm-grid {
-
-                grid-template-columns: repeat(2, 1fr);
-
-            }
-
-        }
-
-        @media (max-width:500px) {
-
-            .farm-grid {
-
-                grid-template-columns: 1fr;
-
-            }
-
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <h1>Le zoo des Webeux</h1>
-        <p>12 créatures nées dans l'obscurité</p>
+      <h1>Le zoo des Webeux</h1>
+      <p>12 créatures nées dans l'obscurité</p>
     </header>
 
     <div class="farm-grid">
+      <!-- Clea -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info"><span class="student-name">Clea</span></div>
+      </div>
 
-        <!-- Clea -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Clea</span></div>
+      <!-- Mike -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info"><span class="student-name">Mike</span></div>
+      </div>
+
+      <!-- Lou -->
+      <div class="animal-card">
+        <spline-viewer
+          url="https://my.spline.design/fantome-wFwswgW6ihGoDfploNNdyMBR/"
+        ></spline-viewer>
+        <div class="student-info"><span class="student-name">Lou</span></div>
+      </div>
+
+      <!-- Louise -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info"><span class="student-name">Louise</span></div>
+      </div>
+
+      <!-- Bastien -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info">
+          <span class="student-name">Bastien</span>
         </div>
+      </div>
 
-        <!-- Mike -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Mike</span></div>
+      <!-- Loup -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info"><span class="student-name">Loup</span></div>
+      </div>
+
+      <!-- Valentin -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info">
+          <span class="student-name">Valentin</span>
         </div>
+      </div>
 
-        <!-- Lou -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Lou</span></div>
+      <!-- Celestine-->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info">
+          <span class="student-name">Celestine</span>
         </div>
+      </div>
 
-        <!-- Louise -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Louise</span></div>
+      <!-- Camille -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info">
+          <span class="student-name">Camille</span>
         </div>
+      </div>
 
-        <!-- Bastien -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Bastien</span></div>
+      <!-- Fanie -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info"><span class="student-name">Fanie</span></div>
+      </div>
+
+      <!-- Remi-->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info"><span class="student-name">Remi</span></div>
+      </div>
+
+      <!-- Gillou -->
+      <div class="animal-card">
+        <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
+        <div class="student-info">
+          <span class="student-name">Gillou le goat</span>
         </div>
-
-        <!-- Loup -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Loup</span></div>
-        </div>
-
-        <!-- Valentin -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Valentin</span></div>
-        </div>
-
-        <!-- Celestine-->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Celestine</span></div>
-        </div>
-
-        <!-- Camille -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Camille</span></div>
-        </div>
-
-        <!-- Fanie -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Fanie</span></div>
-        </div>
-
-        <!-- Remi-->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Remi</span></div>
-        </div>
-
-        <!-- Gillou -->
-        <div class="animal-card">
-            <spline-viewer url="URL_SPLINE_ICI"></spline-viewer>
-            <div class="student-info"><span class="student-name">Gillou le goat</span></div>
-        </div>
-
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
